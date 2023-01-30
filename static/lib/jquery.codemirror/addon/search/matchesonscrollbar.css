@@ -1,0 +1,15 @@
+/*!
+ * Your-project-name v1.0.0
+ * http://project-homepage.com
+ *
+ * Copyright (c) 2021 Your Company
+ */
+
+.CodeMirror-search-match {
+  background: gold;
+  border-top: 1px solid orange;
+  border-bottom: 1px solid orange;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  opacity: .5;
+}

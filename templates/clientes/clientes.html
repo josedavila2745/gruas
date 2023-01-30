@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createclientes')}}" class="btn btn-success">Nuevo cliente</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>Nombre/Razón Social</th>
+            <th>CIF</th>
+            <th>Dirección</th>
+            <th>Provincia</th>
+            <th>Municipio</th>
+            <th>Código Postal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in datosRecuperados %}
+        <tr>
+            <td>{{cliente[3]}}</td>
+            <td>{{cliente[4]}}</td>
+            <td>{{cliente[5]}}</td>
+            <td>{{cliente[1]}}</td>
+            <td>{{cliente[2]}}</td>
+            <td>{{cliente[6]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editclientes/{{cliente[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deletecliente/{{cliente[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

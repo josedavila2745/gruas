@@ -1,0 +1,12 @@
+/*!
+ * Your-project-name v1.0.0
+ * http://project-homepage.com
+ *
+ * Copyright (c) 2021 Your Company
+ */
+
+.cm-s-ambiance.CodeMirror {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createverificaciones')}}" class="btn btn-success">Nueva verificación</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Nº de fabricación</th>
+            <th>Obra</th>
+            <th>Clientes</th>
+            <th>Realizadas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for verificacion in datosRecuperados %}
+        <tr>
+            <td>{{verificacion[3]}}</td>
+            <td>{{verificacion[4]}}</td>
+            <td>{{verificacion[5]}}</td>
+            <td>{{verificacion[1]}}</td>
+            <td>{{verificacion[2]}}</td>
+            <td>{{verificacion[6]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editverificaciones/{{verificacion[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deleteverificacion/{{verificacion[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

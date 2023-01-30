@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createdespieces')}}" class="btn btn-success">Nuevo despiece</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>Código de despiece</th>
+            <th>Despiece</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for despiece in datosRecuperados %}
+        <tr>
+            <td>{{despiece[0]}}</td>
+            <td>{{despiece[1]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editdespieces/{{despiece[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deletedespieces/{{despiece[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

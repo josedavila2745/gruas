@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% with messages=get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith%}
+
+    <br/>
+
+    <form method="post">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <div class="form-group">
+                        <label for="txtRazonSocial">Nombre/Razón Social</label>
+                        <input id="txtRazonSocial" class="form-control" type="text" name="txtRazonSocial">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCif">CIF</label>
+                        <input id="txtCif" class="form-control" type="text" name="txtCif">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDireccion">Dirección</label>
+                        <input id="txtDireccion" class="form-control" type="text" name="txtDireccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="selProvincia">Provincia</label>
+                        <select id="selProvincia" class="form-control" name="selProvincia">
+                            {% for datos in datosRecuperados %}
+                                <option value="{{ datos[0] }}">{{ datos[1] }}</option>
+                            {% endfor %}                          
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selMunicipio">Municipio</label>
+                        <select id="selMunicipio" class="form-control" name="selMunicipio">                   
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCodigoPostal">Código Postal</label>
+                        <input id="txtCodigoPostal" class="form-control" type="text" name="txtCodigoPostal">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Agregar">
+                        <a href="{{url_for('clientes')}}" class="btn btn-primary">Volver</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        provincia_select = document.getElementById('selProvincia');
+        municipio_select = document.getElementById('selMunicipio');
+        
+        provincia_select.onchange = function(){
+            provincia = provincia_select.value;
+            fetch('municipio/' + provincia).then(function(response){
+                response.json().then(function(data) {
+                    optionHTML = '';
+                    for (municipio of data.municipioprovincia) {
+                        optionHTML += '<option value="' + municipio.idMunicipio +'">' + municipio.nombre + '</option>'
+                    }
+                    municipio_select.innerHTML = optionHTML;
+                });
+            });
+        }
+    </script>
+{% endblock %}

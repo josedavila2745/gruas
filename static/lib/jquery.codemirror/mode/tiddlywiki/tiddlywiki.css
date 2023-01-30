@@ -1,0 +1,21 @@
+/*!
+ * Your-project-name v1.0.0
+ * http://project-homepage.com
+ *
+ * Copyright (c) 2021 Your Company
+ */
+
+span.cm-underlined {
+  text-decoration: underline;
+}
+span.cm-strikethrough {
+  text-decoration: line-through;
+}
+span.cm-brace {
+  color: #170;
+  font-weight: bold;
+}
+span.cm-table {
+  color: blue;
+  font-weight: bold;
+}

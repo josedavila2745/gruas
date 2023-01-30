@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% with messages=get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith%}
+
+    <br/>
+
+    <form method="post">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <div class="form-group">
+                        <label for="txtMarca">Marca de grú</label>
+                        <select id="selMarca" class="form-control" name="selMarca">
+                            <option value="1">Marca 1</option>
+                            <option value="1">Marca 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtModelo">Modelo de grú</label>
+                        <select id="selModelo" class="form-control" name="selModelo">
+                            <option value="1">Modelo 1</option>
+                            <option value="1">Modelo 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtFabricacion">Número de fabricación</label>
+                        <input id="txtFabricacion" class="form-control" type="text" name="txtFabricacion">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtObra">Obra</label>
+                        <input id="txtObra" class="form-control" type="text" name="txtObra">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCiente">Cliente</label>
+                        <select id="selCliente" class="form-control" name="selCliente">
+                            <option value="1">Cliente 1</option>               
+                            <option value="2">Cliente 2</option>            
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Agregar">
+                        <a href="{{url_for('verificaciones')}}" class="btn btn-primary">Volver</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

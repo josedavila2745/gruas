@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% for modelo in datosRecuperados %}
+        <form method="post" action="/updatemodelos" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="form-group">
+                            <label for="txtModelo">modelo de la grúa</label>
+                            <input id="txtModelo" value="{{ modelo[1] }}" class="form-control" type="text" name="txtModelo">
+                        </div>
+
+                        <input type="hidden" value="{{ modelo[0] }}" name="txtIdmodeloGrua" id="txtIdmodeloGrua" readonly>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Modificar">
+                            <a href="{{url_for('modelos')}}" class="btn btn-primary">Volver</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}

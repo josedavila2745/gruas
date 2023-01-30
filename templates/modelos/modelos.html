@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createmodelos')}}" class="btn btn-success">Nuevo modelo</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <!--<th>Código del modelo</th>-->
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>N. fabricación</th>
+            <th>Alcance pluma</th>
+            <th>Altura bajo gancho</th>
+            <th>Empotrada</th>
+            <th>Lastre</th>
+            <th>Carro</th>
+            <th>Mando</th>
+            <th>Botonera</th>
+            <th>Tensión</th>
+            <th>Base</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for modelo in datosRecuperados %}
+        <tr>
+            <!--<td>{{modelo[0]}}</td>-->
+            <td>{{modelo[14]}}</td>
+            <td>{{modelo[2]}}</td>
+            <td>{{modelo[3]}}</td>
+            <td>{{modelo[4]}}</td>
+            <td>{{modelo[5]}}</td>
+            <td>{{modelo[6]}}</td>
+            <td>{{modelo[7]}}</td>
+            <td>{{modelo[8]}}</td>
+            <td>{{modelo[9]}}</td>
+            <td>{{modelo[10]}}</td>
+            <td>{{modelo[11]}}</td>
+            <td>{{modelo[12]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editmodelos/{{modelo[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deletemodelos/{{modelo[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

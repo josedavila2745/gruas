@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createmarcas')}}" class="btn btn-success">Nueva marca</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>Código de la marca</th>
+            <th>Marca</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for marca in datosRecuperados %}
+        <tr>
+            <td>{{marca[0]}}</td>
+            <td>{{marca[1]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editmarcas/{{marca[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deletemarcas/{{marca[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% for concepto in datosRecuperados %}
+        <form method="post" action="/updateconceptospt" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="form-group">
+                            <label for="txtConcepto">Concepto</label>
+                            <input id="txtConcepto" value="{{ concepto[1] }}" class="form-control" type="text" name="txtConcepto">
+                        </div>
+
+                        <input type="hidden" value="{{ concepto[0] }}" name="txtIdConceptoParteTrabajo" id="txtIdConceptoParteTrabajo" readonly>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Modificar">
+                            <a href="{{url_for('conceptospt')}}" class="btn btn-primary">Volver</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% for despiece in datosRecuperados %}
+        <form method="post" action="/updatedespieces" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="form-group">
+                            <label for="txtDenominacion">Denominación del despiece</label>
+                            <input id="txtDenominacion" value="{{ despiece[1] }}" class="form-control" type="text" name="txtDenominacion">
+                        </div>
+
+                        <input type="hidden" value="{{ despiece[0] }}" name="txtIdDespiece" id="txtIdDespiece" readonly>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Modificar">
+                            <a href="{{url_for('despieces')}}" class="btn btn-primary">Volver</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}

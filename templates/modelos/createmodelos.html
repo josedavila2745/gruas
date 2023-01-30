@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% with messages=get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith%}
+
+    <br/>
+
+    <form method="post" action="/storemodelo" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <div class="form-group">
+                        <label for="selMarca">Marca</label>
+                        <select id="selMarca" class="form-control" name="selMarca">
+                            {% for modelo in datosRecuperados %}
+                                <option value="{{ modelo[0] }}">{{ modelo[1] }}</option>
+                            {% endfor %}                          
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtModelo">Modelo</label>
+                        <input id="txtModelo" class="form-control" type="text" name="txtModelo">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNumeroFabricacion">Número de fabricación</label>
+                        <input id="txtNumeroFabricacion" class="form-control" type="text" name="txtNumeroFabricacion">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAlcancePluma">Alcance de la pluma</label>
+                        <input id="txtAlcancePluma" class="form-control" type="text" name="txtAlcancePluma">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAlturaBajoGancho">Altura bajo gancho</label>
+                        <input id="txtAlturaBajoGancho" class="form-control" type="text" name="txtAlturaBajoGancho">
+                    </div>
+                    <div class="form-group">
+                        <label for="selEmpotrada">Empotrada</label>
+                        <select id="selEmpotrada" class="form-control" name="selEmpotrada">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selLastreBase">Lastre base</label>
+                        <select id="selLastreBase" class="form-control" name="selLastreBase">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selCarro">Carro</label>
+                        <select id="selCarro" class="form-control" name="selCarro">
+                            <option value="SR">SR</option>
+                            <option value="DR">DR</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selMandoDistancia">Mando a distancia</label>
+                        <select id="selMandoDistancia" class="form-control" name="selMandoDistancia">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selBotonera">Botonera</label>
+                        <select id="selBotonera" class="form-control" name="selBotonera">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selTensionAlimentacion">Tensión de alimentación</label>
+                        <select id="selTensionAlimentacion" class="form-control" name="selTensionAlimentacion">
+                            <option value="380 V">380 V</option>
+                            <option value="220 V">220 V</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selBase">Base</label>
+                        <select id="selBase" class="form-control" name="selBase">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>                     
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Agregar">
+                        <a href="{{url_for('modelos')}}" class="btn btn-primary">Volver</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </form>
+{% endblock %}

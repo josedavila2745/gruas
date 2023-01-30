@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+
+<br/>
+<a href="{{url_for('createconceptosnpt')}}" class="btn btn-success">Nuevo concepto</a>
+<br/>
+<br/>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>Código de concepto</th>
+            <th>Concepto</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for concepto in datosRecuperados %}
+        <tr>
+            <td>{{concepto[0]}}</td>
+            <td>{{concepto[1]}}</td>
+            <td>
+                <a class="btn btn-warning" href="/editconceptosnpt/{{concepto[0]}}">Editar</a> | 
+                <a onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-danger" href="/deleteconceptosnpt/{{concepto[0]}}">Eliminar</a>
+            </td>
+        </tr>       
+                  
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

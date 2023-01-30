@@ -1,0 +1,20 @@
+/*!
+ * Your-project-name v1.0.0
+ * http://project-homepage.com
+ *
+ * Copyright (c) 2021 Your Company
+ */
+
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+#graph {
+  width: 800px;
+  height: 250px;
+  margin: 20px auto 0 auto;
+}
+pre {
+  height: 250px;
+  overflow: auto;
+}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <h3>{{ message }}</h3>
+
+    {% for marca in datosRecuperados %}
+        <form method="post" action="/updatemarcas" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="form-group">
+                            <label for="txtMarca">Marca de la grúa</label>
+                            <input id="txtMarca" value="{{ marca[1] }}" class="form-control" type="text" name="txtMarca">
+                        </div>
+
+                        <input type="hidden" value="{{ marca[0] }}" name="txtIdMarcaGrua" id="txtIdMarcaGrua" readonly>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Modificar">
+                            <a href="{{url_for('marcas')}}" class="btn btn-primary">Volver</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}
